@@ -4,6 +4,22 @@
 \usepackage[brazilian]{babel}
 \usepackage[utf8x]{inputenc}
 
+\usepackage[T1]{fontenc}
+%\usepackage{enumitem}
+
+%% Useful packages
+\usepackage{placeins}
+\usepackage{lineno,hyperref}
+\usepackage[table]{xcolor}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{supertabular}
+\usepackage{footnote}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+\modulolinenumbers[5]
+\usepackage{hyperref}
+
 \modulolinenumbers[5]
 
 %\journal{}
@@ -85,15 +101,29 @@ O Intel Software Guard eXtensions visa resolver esse problema fornecendo um Ambi
 
 Embora o SGX forneça fortes proteções contra os adversários que tentam acessar ou manipular diretamente softwares protegidos, o SGX não protege contra vários ataques de canal lateral baseados em software, que usam informações derivadas de detalhes de implementação para permitir que um atacante deduza segredos de softwares protegidos ~\cite{costan_intel_2016}.
 
-Este artigo de revisão sistemática fornece uma visão geral, sem viés, do modelo de design e segurança do SGX e detalha vários ataques de canal lateral distintos aos quais o SGX é vulnerável. Além disso, as contramedidas baseadas em software e hardware são examinadas, e as implicações deste trabalho para pesquisas futuras e o desenvolvimento de novos Ambientes de Execução Confiáveis são discutidos.
+Este artigo de revisão sistemática fornece uma visão geral, sem viés, do modelo de design e segurança do SGX e detalha vários ataques de canal lateral distintos aos quais o SGX é vulnerável. Além disso, as contramedidas baseadas em software e hardware são examinadas. É provida uma evidência empírica com foco nas seguintes \textbf{questões de pesquisa (RQ)}: \\\textbf{RQ1}: Quais ataques de canal lateral podem ser realizados contra enclaves Intel SGX?\\ \textbf{RQ2}: Quais contramedidas para evitar ataques de canal lateral contra enclaves Intel SGX?
 
-É provida uma evidência empírica com foco na seguinte \textbf{questão de pesquisa (RQ)}: quais ataques de canal lateral podem ser realizados contra enclaves Intel SGX e como mitigá-los?
+\section{Ataques de Canal Lateral de Software}
 
+Os ataques de canal lateral são uma classe de ataques que aproveitam informações sobre as propriedades físicas de um sistema para realizar um ataque. Ataques de canal lateral físico usam o conhecimento das características de um sistema para inferir segredos de vazamentos de informações físicas. Por exemplo, um atacante pode analisar o consumo de energia ou a radiação eletromagnética para derivar segredos de uma máquina que executa cálculos de alguma forma seguros ~\cite{standaert_introduction_2010}.
 
+Os ataques de canal lateral de software exploram vazamentos de informações que resultam de características das implementações de hardware ou software de um sistema seguro que podem ser observados pelo software em execução no próprio sistema. Por exemplo, um atacante pode aproveitar a diferença de tempo necessária para acessar dados armazenados no cache em comparação com os dados armazenados na memória principal para inferir segredos dos padrões de uso de memória ~\cite{costan_intel_2016}.
 
-\paragraph{Installation} If the document class \emph{elsarticle} is not available on your computer, you can download and install the system package \emph{texlive-publishers} (Linux) or install the \LaTeX\ package \emph{elsarticle} using the package manager of your \TeX\ installation, which is typically \TeX\ Live or Mik\TeX.
+Embora os ataques físicos de canal lateral contra hardware moderno sejam difíceis e caros, exigindo ferramentas avançadas e acesso físico à máquina vítima, os ataques de canal lateral de software são baratos de implantar e podem ser executados por qualquer pessoa com acesso remoto ou local a um sistema ~\cite{costan_intel_2016}. Os ataques de canal lateral de software discutidos aqui exploram detalhes de implementação de hardware e software para obter informações sobre padrões de acesso à memória, que podem ser usados para inferir segredos de um sistema que, de alguma forma, seria seguro ~\cite{gotzfried_cache_2017, schwarz_malware_2017, xu_controlled-channel_2015, shinde_preventing_2015}. Os ataques de canal lateral não são incluídos no modelo de ameaça SGX devido à impraticabilidade percebida dessa classe de ataques. No entanto, como o trabalho analisado abaixo demonstra, os ataques de canal lateral de software são práticos contra enclaves SGX e representam uma ameaça significativa à segurança do programa em um ambiente de nuvem no qual o software privilegiado não é confiável ~\cite{moghimi_cachezoom:_2017, intel_corporation_tutorial_2015}.
 
-\paragraph{Usage} Once the package is properly installed, you can use the document class \emph{elsarticle} to create a manuscript. Please make sure that your manuscript follows the guidelines in the Guide for Authors of the relevant journal. It is not necessary to typeset your manuscript in exactly the same way as an article, unless you are submitting to a camera-ready copy (CRC) journal.
+\section{Ataques Contra Enclaves SGX}
+
+Vários ataques distintos de canal lateral de software foram demonstrados contra enclaves SGX em ataques de prova de conceito executados por atacantes privilegiados e de nível de usuário. Embora os dados do enclave estejam protegidos na Memória Reservada do Processador e sejam isolados dos processos do SO e do usuário, o gerenciamento e o escalonamento da memória são delegados para o SO e/ou hipervisor não confiável, oferecendo ao SO um grande grau de controle sobre o processo SGX vítima e fornecendo recursos de medição de granulação fina. Assim, um SO mal-intencionado é livre para ditar com precisão como e quando um programa de enclave vítima é escalonado e em quais núcleos lógicos. Essa alta magnitude de controle sobre o processo vítima pode ser aproveitada para realizar poderosos ataques de canal lateral de software privilegiado contra enclaves SGX ~\cite{costan_intel_2016}.
+
+Além disso, as garantias de proteção e isolamento fornecidas pelo SGX se estendem a programas maliciosos, o que significa que um adversário pode usar um enclave SGX para lançar ataques contra um enclave vítima em execução no mesmo sistema host. Como até mesmo os serviços privilegiados desconhecem o conteúdo e o comportamento dos enclaves SGX, o sistema operacional host não tem meios de monitorar seus enclaves SGX quanto a comportamento mal-intencionado e, portanto, não protege processos honestos de usuários contra comportamentos de enclaves mal-intencionados ~\cite{costan_intel_2016, schwarz_malware_2017}.
+
+\section{Ataques Contra Enclaves SGX na Literatura}
+
+Para responder quais ataques de canal lateral podem ser realizados contra enclaves Intel SGX e como mitigá-los \textbf{(RQ)} foi conduzida uma revisão na literatura.
+
+\subsection {Construindo termos de pesquisa}
+
+Os seguintes detalhes da população, intervenção, resultados e desenhos experimentais de interesse para a revisão formarão a base para a construção de termos de pesquisa adequados descritos mais adiante.
 
 \paragraph{Functionality} The Elsevier article class is based on the standard article class and supports almost all of the functionality of that class. In addition, it features commands and options to format the
 \begin{itemize}
