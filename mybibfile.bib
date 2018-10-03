@@ -1,20 +1,196 @@
-﻿@article{Dirac1953888,
-  title   = "The lorentz transformation and absolute time",
-  journal = "Physica ",
-  volume  = "19",
-  number  = "1-–12",
-  pages   = "888--896",
-  year    = "1953",
-  doi     = "10.1016/S0031-8914(53)80099-6",
-  author  = "P.A.M. Dirac"
+@article{costan_sanctum:_2015,
+	title = {Sanctum: {Minimal} {RISC} {Extensions} for {Isolated} {Execution}.},
+	volume = {2015},
+	shorttitle = {Sanctum},
+	url = {https://pdfs.semanticscholar.org/7ea7/45e466e988d55981e84dd647adb876b3352e.pdf},
+	urldate = {2017-07-17},
+	journal = {IACR Cryptology ePrint Archive},
+	author = {Costan, Victor and Lebedev, Ilia A. and Devadas, Srinivas},
+	year = {2015},
+	pages = {564},
 }
 
-@article{Feynman1963118,
-  title   = "The theory of a general quantum system interacting with a linear dissipative system",
-  journal = "Annals of Physics ",
-  volume  = "24",
-  pages   = "118--173",
-  year    = "1963",
-  doi     = "10.1016/0003-4916(63)90068-X",
-  author  = "R.P Feynman and F.L {Vernon Jr.}"
+@inproceedings{aciicmez_power_2007,
+	address = {New York, NY, USA},
+	series = {{ASIACCS} '07},
+	title = {On the {Power} of {Simple} {Branch} {Prediction} {Analysis}},
+	isbn = {978-1-59593-574-8},
+	url = {http://doi.acm.org/10.1145/1229285.1266999},
+	doi = {10.1145/1229285.1266999},
+	abstract = {Very recently, a new software side-channel attack, called Branch Prediction Analysis (BPA) attack, has been discovered and also demonstrated to be practically feasible on popular commodity PC platforms. While the above recent attack still had the flavor of a classical timing attack against RSA, where one uses many execution-time measurements under the same key in order to statistically amplify some small but key-dependent timing differences, we dramatically improve upon the former result. We prove that a carefully written spy-process running simultaneously with an RSA-process, is able to collect during one single RSA signing execution almost all of the secret key bits. We call such an attack, analyzing the CPU's Branch Predictor states through spying on a single quasi-parallel computation process, a Simple Branch Prediction Analysis (SBPA) attack --- sharply differentiating it from those one relying on statistical methods and requiring many computation measurements under the same key. The successful extraction of almost all secret key bits by our SBPA attack against an openSSL RSA implementation proves that the often recommended blinding or so called randomization techniques to protect RSA against side-channel attacks are, in the context of SBPA attacks, totally useless. Additional to that very crucial security implication, targeted at such implementations which are assumed to be at least statistically secure, our successful SBPA attack also bears another equally critical security implication. Namely, in the context of simple side-channel attacks, it is widely believed that equally balancing the operations after branches is a secure countermeasure against such simple attacks. Unfortunately, this is not true, as even such "balanced branch" implementations can be completely broken by our SBPA attacks. Moreover, despite sophisticated hardware-assisted partitioning methods such as memory protection, sandboxing or even virtualization, SBPA attacks empower an unprivileged process to successfully attack other processes running in parallel on the same processor. Thus, we conclude that SBPA attacks are much more dangerous than previously anticipated, as they obviously do not belong to the same category as pure timing attacks.},
+	booktitle = {Proceedings of the 2Nd {ACM} {Symposium} on {Information}, {Computer} and {Communications} {Security}},
+	publisher = {ACM},
+	author = {Aciiçmez, Onur and Koç, Çetin Kaya and Seifert, Jean-Pierre},
+	year = {2007},
+	keywords = {branch prediction analysis, modular exponentiation, RSA, side channel analysis},
+	pages = {312--320}
+}
+
+@inproceedings{seo_sgx-shield:_2017,
+	title = {{SGX}-{Shield}: {Enabling} address space layout randomization for {SGX} programs},
+	shorttitle = {{SGX}-{Shield}},
+	url = {http://cps.kaist.ac.kr/papers/ndss17-sgxshield.pdf},
+	urldate = {2017-06-02},
+	booktitle = {Proceedings of the 2017 {Annual} {Network} and {Distributed} {System} {Security} {Symposium} ({NDSS}), {San} {Diego}, {CA}},
+	author = {Seo, Jaebaek and Lee, Byounyoung and Kim, Seongmin and Shih, Ming-Wei and Shin, Insik and Han, Dongsu and Kim, Taesoo},
+	year = {2017}
+}
+
+@article{moghimi_cachezoom:_2017,
+	title = {{CacheZoom}: {How} {SGX} {Amplifies} {The} {Power} of {Cache} {Attacks}},
+	shorttitle = {{CacheZoom}},
+	url = {http://arxiv.org/abs/1703.06986},
+	abstract = {Intel SGX is a hardware extension proposed to provide a Trusted Execution Environment on commodity processors. SGX disregards microarchitectural side-channels as out of scope of its threat model. In this paper, we propose a high-resolution cache side-channel attack and demonstrate its impact and its capability in overcoming the security goals of SGX technology. Our tool tracks virtually all memory accesses of SGX enclaves with high spatial and temporal precision. The resulting attack succeeds on implementations that were previously believed to be resistant to realistic cache attacks. We demonstrate that these new attacks can recover AES keys from an enclave with as few as ten measurements.},
+	journal = {arXiv:1703.06986 [cs]},
+	author = {Moghimi, Ahmad and Irazoqui, Gorka and Eisenbarth, Thomas},
+	month = mar,
+	year = {2017},
+	note = {arXiv: 1703.06986},
+	keywords = {Computer Science - Cryptography and Security}
+}
+
+@article{costan_intel_2016,
+	title = {Intel {SGX} {Explained}.},
+	volume = {2016},
+	url = {https://pdfs.semanticscholar.org/2d7f/3f4ca3fbb15ae04533456e5031e0d0dc845a.pdf},
+	urldate = {2017-05-30},
+	journal = {IACR Cryptology ePrint Archive},
+	author = {Costan, Victor and Devadas, Srinivas},
+	year = {2016},
+	pages = {86}
+}
+
+@misc{intel_corporation_intel_2016,
+	title = {Intel {Software} {Guard} {Extensions}},
+	url = {https://software.intel.com/en-us/sgx},
+	urldate = {2017-06-14},
+	journal = {Intel Software Guard Extensions},
+	author = {Intel Corporation},
+	year = {2016}
+}
+
+@inproceedings{gotzfried_cache_2017,
+	title = {Cache {Attacks} on {Intel} {SGX}},
+	isbn = {978-1-4503-4935-2},
+	url = {http://dl.acm.org/citation.cfm?doid=3065913.3065915},
+	doi = {10.1145/3065913.3065915},
+	language = {en},
+	urldate = {2017-05-30},
+	publisher = {ACM Press},
+	author = {Götzfried, Johannes and Eckert, Moritz and Schinzel, Sebastian and Müller, Tilo},
+	year = {2017},
+	pages = {1--6}
+}
+
+@inproceedings{shih_t-sgx:_2017,
+	title = {T-{SGX}: {Eradicating} {Controlled}-{Channel} {Attacks} {Against} {Enclave} {Programs}},
+	isbn = {978-1-891562-46-4},
+	shorttitle = {T-{SGX}},
+	url = {https://www.internetsociety.org/sites/default/files/ndss2017_07-2_Shih_paper.pdf},
+	doi = {10.14722/ndss.2017.23193},
+	language = {en},
+	urldate = {2017-05-30},
+	publisher = {Internet Society},
+	author = {Shih, Ming-Wei and Lee, Sangho and Kim, Taesoo and Peinado, Marcus},
+	year = {2017},
+	file = {fba7aad263c7d4cf5ce67b1d629935043e7a.pdf:/home/colin/.zotero/zotero/f4prs9xk.default/zotero/storage/FXRCM9M8/fba7aad263c7d4cf5ce67b1d629935043e7a.pdf:application/pdf}
+}
+
+@article{schwarz_malware_2017,
+	title = {Malware {Guard} {Extension}: {Using} {SGX} to {Conceal} {Cache} {Attacks}},
+	shorttitle = {Malware {Guard} {Extension}},
+	url = {http://arxiv.org/abs/1702.08719},
+	abstract = {In modern computer systems, user processes are isolated from each other by the operating system and the hardware. Additionally, in a cloud scenario it is crucial that the hypervisor isolates tenants from other tenants that are co-located on the same physical machine. However, the hypervisor does not protect tenants against the cloud provider and thus the supplied operating system and hardware. Intel SGX provides a mechanism that addresses this scenario. It aims at protecting user-level software from attacks from other processes, the operating system, and even physical attackers. In this paper, we demonstrate fine-grained software-based side-channel attacks from a malicious SGX enclave targeting co-located enclaves. Our attack is the first malware running on real SGX hardware, abusing SGX protection features to conceal itself. Furthermore, we demonstrate our attack both in a native environment and across multiple Docker containers. We perform a Prime+Probe cache side-channel attack on a co-located SGX enclave running an up-to-date RSA implementation that uses a constant-time multiplication primitive. The attack works although in SGX enclaves there are no timers, no large pages, no physical addresses, and no shared memory. In a semi-synchronous attack, we extract 96\% of an RSA private key from a single trace. We extract the full RSA private key in an automated attack from 11 traces within 5 minutes.},
+	journal = {arXiv:1702.08719 [cs]},
+	author = {Schwarz, Michael and Weiser, Samuel and Gruss, Daniel and Maurice, Clémentine and Mangard, Stefan},
+	month = feb,
+	year = {2017},
+	note = {arXiv: 1702.08719},
+	keywords = {Computer Science - Cryptography and Security}
+}
+
+@incollection{standaert_introduction_2010,
+	series = {Integrated {Circuits} and {Systems}},
+	title = {Introduction to {Side}-{Channel} {Attacks}},
+	isbn = {978-0-387-71827-9 978-0-387-71829-3},
+	url = {https://link.springer.com/chapter/10.1007/978-0-387-71829-3_2},
+	abstract = {Side-channel cryptanalysis is a new research area in applied cryptography that has gained more and more interest since the mid-nineties. It considers adversaries trying to take advantage of the physical specificities of actual cryptographic devices. These implementation-specific attacks frequently turn out to be much more efficient than the best known cryptanalytic attacks against the underlying primitive seen as an idealized object. This chapter aims to introduce such attacks with illustrative examples and to put forward a number of practical concerns related to their implementation and countermeasures.},
+	language = {en},
+	urldate = {2017-07-19},
+	booktitle = {Secure {Integrated} {Circuits} and {Systems}},
+	publisher = {Springer, Boston, MA},
+	author = {Standaert, François-Xavier},
+	year = {2010},
+	note = {DOI: 10.1007/978-0-387-71829-3\_2},
+	pages = {27--42}
+}
+
+@article{liu_cache-timing_2013,
+	title = {Cache-timing {Attacks} on {AES}},
+	url = {https://nyuad.nyu.edu/content/dam/nyuad/departments/research/images/center-institutes-grants/moma-lab/moma-project-cache-timing-attacks-on-aes.pdf},
+	urldate = {2017-07-19},
+	journal = {New York University},
+	author = {Liu, Wei and Di Segni, Ariel and Ding, Ye and Zhang, Teng},
+	year = {2013}
+}
+
+@misc{intel_corporation_tutorial_2015,
+	title = {Tutorial {Slides} for {Intel} {SGX}},
+	url = {https://software.intel.com/sites/default/files/332680-002.pdf},
+	urldate = {2017-07-15},
+	author = {Intel Corporation},
+	year = {2015}
+}
+
+@inproceedings{xu_controlled-channel_2015,
+	title = {Controlled-{Channel} {Attacks}: {Deterministic} {Side} {Channels} for {Untrusted} {Operating} {Systems}},
+	shorttitle = {Controlled-{Channel} {Attacks}},
+	doi = {10.1109/SP.2015.45},
+	abstract = {The presence of large numbers of security vulnerabilities in popular feature-rich commodity operating systems has inspired a long line of work on excluding these operating systems from the trusted computing base of applications, while retaining many of their benefits. Legacy applications continue to run on the untrusted operating system, while a small hyper visor or trusted hardware prevents the operating system from accessing the applications' memory. In this paper, we introduce controlled-channel attacks, a new type of side-channel attack that allows an untrusted operating system to extract large amounts of sensitive information from protected applications on systems like Overshadow, Ink Tag or Haven. We implement the attacks on Haven and Ink Tag and demonstrate their power by extracting complete text documents and outlines of JPEG images from widely deployed application libraries. Given these attacks, it is unclear if Over shadow's vision of protecting unmodified legacy applications from legacy operating systems running on off-the-shelf hardware is still tenable.},
+	booktitle = {2015 {IEEE} {Symposium} on {Security} and {Privacy}},
+	author = {Xu, Y. and Cui, W. and Peinado, M.},
+	month = may,
+	year = {2015},
+	keywords = {controlled-channel attacks, Control systems, cryptography, Data mining, deterministic side channels, document handling, feature-rich commodity operating systems, Hardware, Haven, hypervisor, Ink Tag, JPEG images, legacy operating systems, Monitoring, Operating systems, operating systems (computers), Overshadow, Resource management, security vulnerabilities, SGX, side-channel attack, text documents, trusted computing, trusted hardware, untrusted operating system, untrusted operating systems, virtualization, Virtual machine monitors},
+	pages = {640--656}
+}
+
+@article{lee_inferring_2017,
+	title = {Inferring {Fine}-grained {Control} {Flow} {Inside} {SGX} {Enclaves} with {Branch} {Shadowing}},
+	journal = {n Proceedings of the 26th USENIX Security Symposium},
+	author = {Lee, Sangho and Shih, Ming-Wei and Gera, Prasun and Kim, Taesoo and Kim, Hyesoon and Peinado, Marcus},
+	year = {2017}
+}
+
+@article{shinde_preventing_2015,
+	title = {Preventing {Your} {Faults} {From} {Telling} {Your} {Secrets}: {Defenses} {Against} {Pigeonhole} {Attacks}},
+	shorttitle = {Preventing {Your} {Faults} {From} {Telling} {Your} {Secrets}},
+	url = {http://arxiv.org/abs/1506.04832},
+	abstract = {New hardware primitives such as Intel SGX secure a user-level process in presence of an untrusted or compromised OS. Such "enclaved execution" systems are vulnerable to several side-channels, one of which is the page fault channel. In this paper, we show that the page fault side-channel has sufficient channel capacity to extract bits of encryption keys from commodity implementations of cryptographic routines in OpenSSL and Libgcrypt --- leaking 27\% on average and up to 100\% of the secret bits in many case-studies. To mitigate this, we propose a software-only defense that masks page fault patterns by determinising the program's memory access behavior. We show that such a technique can be built into a compiler, and implement it for a subset of C which is sufficient to handle the cryptographic routines we study. This defense when implemented generically can have significant overhead of up to 4000X, but with help of developer-assisted compiler optimizations, the overhead reduces to at most 29.22\% in our case studies. Finally, we discuss scope for hardware-assisted defenses, and show one solution that can reduce overheads to 6.77\% with support from hardware changes.},
+	journal = {arXiv:1506.04832 [cs]},
+	author = {Shinde, Shweta and Chua, Zheng Leong and Narayanan, Viswesh and Saxena, Prateek},
+	month = jun,
+	year = {2015},
+	note = {arXiv: 1506.04832},
+	keywords = {Computer Science - Cryptography and Security}
+}
+
+@inproceedings{costan_sanctum:_2016,
+	address = {Austin, TX},
+	title = {Sanctum: {Minimal} {Hardware} {Extensions} for {String} {Software} {Isolation}},
+	url = {http://portal.acm.org/toc.cfm?id=1072530},
+	language = {English},
+	urldate = {2017-07-17},
+	author = {Costan, Victor and Lebedev, Ilia and Devadas, Srinivas},
+	year = {2016}
+}
+
+@misc{lunden_amazons_2015,
+	title = {Amazon’s {AWS} {Is} {Now} {A} \$7.3B {Business} {As} {It} {Passes} 1M {Active} {Enterprise} {Customers}},
+	url = {http://social.techcrunch.com/2015/10/07/amazons-aws-is-now-a-7-3b-business-as-it-passes-1m-active-enterprise-customers/},
+	abstract = {Today Amazon's AWS business kicked off its big Re:Invent conference with some stats that speak to how the company's enterprise division continues to dominate..},
+	urldate = {2017-07-24},
+	journal = {TechCrunch},
+	author = {Lunden, Ingrid},
+	year = {2015}
 }

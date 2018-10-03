@@ -1,10 +1,10 @@
 \documentclass[review]{elsarticle}
 
 \usepackage{lineno,hyperref}
-\usepackage[utf8x]{inputenc}
+\usepackage[brazilian]{babel}
 \modulolinenumbers[5]
 
-%\journal{Journal of \LaTeX\ Templates}
+%\journal{}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %% Elsevier bibliography styles
@@ -42,39 +42,52 @@
 
 \begin{frontmatter}
 
-\title{Ataques de Canal Laterla Baseados em Software Contra Enclaves Intel SGX: Revisão Sistemática}
+\title{Ataques de Canal Lateral Contra Enclaves Intel SGX}
 %\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on \href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
 
 %% Group authors per affiliation:
-\author{Elsevier\fnref{myfootnote}}
-\address{Radarweg 29, Amsterdam}
-\fntext[myfootnote]{Since 1880.}
+\author{Fábio Silva}
+\address{Laboratório de Sistemas Distribuídos\\Universidade Federal de Campina Grande}
+\ead{fabiosilva@lsd.ufcg.edu.br}
+%\fntext[myfootnote]{Since 1880.}
 
 %% or include affiliations in footnotes:
-\author[mymainaddress,mysecondaryaddress]{Elsevier Inc}
-\ead[url]{www.elsevier.com}
+%\author[mymainaddress,mysecondaryaddress]{Elsevier Inc}
+%\ead[url]{www.elsevier.com}
 
-\author[mysecondaryaddress]{Global Customer Service\corref{mycorrespondingauthor}}
-\cortext[mycorrespondingauthor]{Corresponding author}
-\ead{support@elsevier.com}
+%\author[mysecondaryaddress]{Global Customer Service\corref{mycorrespondingauthor}}
+%\cortext[mycorrespondingauthor]{Corresponding author}
+%\ead{support@elsevier.com}
 
-\address[mymainaddress]{1600 John F Kennedy Boulevard, Philadelphia}
-\address[mysecondaryaddress]{360 Park Avenue South, New York}
+%\address[mymainaddress]{1600 John F Kennedy Boulevard, Philadelphia}
+%\address[mysecondaryaddress]{360 Park Avenue South, New York}
 
 \begin{abstract}
-This template helps you to create a properly formatted \LaTeX\ manuscript.
+O isolamento e a proteção de processos em nível de usuário em máquinas compartilhadas têm sido tradicionalmente o domínio do sistema operacional ou do hipervisor. No entanto, em um ambiente de computação na nuvem, os usuários não podem confiar no software do sistema para prover isolamento, uma vez que o provedor de serviços responsável por manter o software privilegiado pode não ser confiável. O Intel Software Guard eXtensions (SGX) é uma extensão de segurança baseada em hardware que permite aplicações em nível de usuário serem executadas de forma segura em um ambiente onde todos os outros softwares em execução no sistema não são confiáveis. Intel SGX usa enclaves seguros em execução na memória protegida, juntamente com um esquema de atestação de software para fornecer garantias de confidencialidade e integridade aos usuários que desejam executar o software em um sistema remoto não confiável. O SGX é vulnerável a vários ataques de canal lateral baseados em software, que aproveitam as medições de desempenho para determinar padrões de acesso à memória e derivar segredos do software executado em enclaves seguros do SGX. Esta revisão sistemática fornece uma visão geral das vulnerabilidades do SGX para ataques de canal lateral baseados em software, bem como possíveis contramedidas que podem ser implementadas para ajudar a proteger os programas SGX existentes.
 \end{abstract}
 
 \begin{keyword}
-\texttt{elsarticle.cls}\sep \LaTeX\sep Elsevier \sep template
-\MSC[2010] 00-01\sep  99-00
+\texttt Intel SGX\sep ataques de canal lateral \sep computação na nuvem
+%\MSC[2010] 00-01\sep  99-00
 \end{keyword}
 
 \end{frontmatter}
 
 \linenumbers
 
-\section{The Elsevier article class}
+\section{Introdução}
+
+Os serviços de computação em nuvem, como o EC-2 da Amazon e o Google Cloud Platform, registraram um crescimento significativo, à medida que os avanços nos sistemas distribuídos tornam a utilização de recursos computacionais de terceiros mais atraente e acessível ~\cite{lunden_amazons_2015}. Como resultado, a segurança em uma configuração de nuvem tomou-se cada vez mais relevante à medida que os desenvolvedores procuram maneiras de proteger dados confidenciais de partes potencialmente não confiáveis com quem compartilham recursos de computação. Os usuários têm tradicionalmente confiado nos serviços oferecidos pelo sistema operacional para fornecer garantias de confidencialidade e integridade, exercendo controle estrito sobre o gerenciamento de recursos e impondo o isolamento lógico dos processos em nível de usuário. No entanto, em um cenário de computação em nuvem, os usuários que desejam executar o software em sistemas remotos podem não confiar no provedor de serviços em nuvem responsável pela administração do sistema operacional ou do hipervisor do host. Portanto, é necessário considerar um cenário em que um usuário deseja executar com segurança seu software em um sistema controlado por um provedor de serviços potencialmente mal-intencionado, com controle sobre o software privilegiado.
+
+O Intel Software Guard eXtensions visa resolver esse problema fornecendo um Ambiente de Execução Confiável por meio da adição de extensões de hardware que fornecem fortes garantias de confidencialidade e integridade em um ambiente em que nenhum software em uma máquina host é confiável. O SGX reforça o isolamento estrito do software protegido em nível de usuário do resto do sistema não confiável e usa um esquema de atestação de software para provar ao usuário que seu software é não modificado e protegido por hardware seguro ~\cite{intel_corporation_intel_2016}.
+
+Embora o SGX forneça fortes proteções contra os adversários que tentam acessar ou manipular diretamente softwares protegidos, o SGX não protege contra vários ataques de canal lateral baseados em software, que usam informações derivadas de detalhes de implementação para permitir que um atacante deduza segredos de softwares protegidos ~\cite{costan_intel_2016}.
+
+Este artigo de revisão sistemática fornece uma visão geral, sem viés, do modelo de design e segurança do SGX e detalha vários ataques de canal lateral distintos aos quais o SGX é vulnerável. Além disso, as contramedidas baseadas em software e hardware são examinadas, e as implicações deste trabalho para pesquisas futuras e o desenvolvimento de novos Ambientes de Execução Confiáveis são discutidos.
+
+É provida uma evidência empírica com foco na seguinte \textbf{questão de pesquisa (RQ)}: quais ataques de canal lateral podem ser realizados contra enclaves Intel SGX e como mitigá-los?
+
+
 
 \paragraph{Installation} If the document class \emph{elsarticle} is not available on your computer, you can download and install the system package \emph{texlive-publishers} (Linux) or install the \LaTeX\ package \emph{elsarticle} using the package manager of your \TeX\ installation, which is typically \TeX\ Live or Mik\TeX.
 
@@ -106,7 +119,7 @@ There are various bibliography styles available. You can select the style of you
 
 Here are two sample references: \cite{Feynman1963118,Dirac1953888}.
 
-\section*{References}
+%\section*{References}
 
 \bibliography{mybibfile}
 
